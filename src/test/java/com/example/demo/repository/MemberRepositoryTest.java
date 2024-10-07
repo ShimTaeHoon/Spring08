@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,17 @@ public class MemberRepositoryTest {
 
 	@Autowired
 	MemberRepository repository;
+	
+	@Test
+	public void 회원일괄등록() {
+		List<Member> list = new ArrayList<>();
+		
+		for(int i = 1; i <= 30; i++) {
+			list.add(new Member("user" + i, "1234", "둘리"));
+		}
+		
+		repository.saveAll(list);
+	}
 	
 	@Test
 	public void 회원등록() {
@@ -63,7 +75,7 @@ public class MemberRepositoryTest {
 	
 	@Test
 	public void 회원삭제() {
-		repository.deleteById("user2");
+		repository.deleteById("user1");
 	}
 	
 }
